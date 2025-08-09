@@ -1,0 +1,26 @@
+name: lvl-3 sequential
+
+on:
+  push:
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Step-1 is running"
+
+  job-two:
+    runs-on: ubuntu-latest
+    needs: job-one
+
+    steps:
+      - run: echo "Step-1 is completed",
+             echo "step-2 is running"
+
+  job-three:
+    runs-on: ubuntu-latest
+    needs: job-two
+
+    steps:
+      - run: echo "All steps are completed"

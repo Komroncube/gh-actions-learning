@@ -1,7 +1,7 @@
 name: lvl-2 multi-job
 
 on:
-  push:
+  pull_request:
   
 
 jobs:
