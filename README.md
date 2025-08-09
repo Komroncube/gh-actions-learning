@@ -1,0 +1,1 @@
+[![lvl-1 hello world](https://github.com/Komroncube/gh-actions-learning/actions/workflows/hello.yml/badge.svg)](https://github.com/Komroncube/gh-actions-learning/actions/workflows/hello.yml)
