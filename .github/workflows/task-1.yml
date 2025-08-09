@@ -1,0 +1,23 @@
+name: task-1 for 1-5 lvls
+
+on:
+  push:
+  
+
+jobs:
+  logging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "---- Workflow started ----"
+          echo "Processing workflow...."
+          echo "---- Workflow Finished ----"
+    
+  main-task:
+    runs-on: ubuntu-latest
+    needs: logging
+    steps:
+      - run: |
+            echo "Current branch name: ${{ github.ref_name}}"
+            echo "My secret: ${{ secrets.PAC }}"
