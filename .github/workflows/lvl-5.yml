@@ -1,0 +1,32 @@
+name: lvl-5 inputs and secrets
+
+on:
+  workflow_dispatch:
+    inputs:
+      staging:
+        type: boolean
+        description: "Deploy to staging?"
+        required: false
+        default: false
+      
+      environment:
+        type: choice
+        description: "Where to deploy?"
+        required: true
+        options:
+          - development
+          - qa
+          - prod
+        
+
+jobs:
+  initiate-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "Started deploying to ${{ github.event.inputs.environment}}"
+          echo "is deploying to staging: ${{ github.event.inputs.staging}}"
+          echo "${{ github.event.workflow}}"
+          echo "steps ${{ steps}}"
+          echo "secret value ${{ secrets.PAC }}"
