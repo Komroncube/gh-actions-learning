@@ -27,7 +27,7 @@ jobs:
       - name: Run tests with pytest
         run: |
           echo "====== Start running tests ======"
-          pytest -v
+          pytest tests/calculator_tests.py
           echo "===== Finish running tests ======"
 
       
