@@ -1,12 +1,18 @@
-name: Hello world workflow
+name: lvl-1 hello world
 
 on:
   push:
 
 jobs:
-  say-hello:
+  greetings:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print greeting
-        run: echo "Hello from Github actions"
+      - name: Start logging
+        run: echo "---- Workflow has started -----"
+      
+      - name: Say hello
+        run: echo "Hello Kamronbek"
+
+      - name: Finish logging
+        run: echo "---- Workflow has stopped ----"
