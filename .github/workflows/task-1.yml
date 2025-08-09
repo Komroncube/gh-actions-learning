@@ -1,7 +1,7 @@
 name: task-1 for 1-5 lvls
 
 on:
-  push:
+  workflow_dispatch:
   
 
 jobs:
@@ -18,6 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: logging
     steps:
-      - run: |
+      - name: "Log details"
+        run: |
             echo "Current branch name: ${{ github.ref_name}}"
             echo "My secret: ${{ secrets.PAC }}"
+    
+      - name: "Print secret length only"
+        run: |
+            echo "Secret length: ${#TOKEN}"
+        env:
+          TOKEN: ${{ secrets.PAC}}

@@ -1,7 +1,7 @@
 name: lvl-1 hello world
 
 on:
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   greetings:
