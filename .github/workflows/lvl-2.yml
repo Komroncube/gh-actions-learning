@@ -1,7 +1,7 @@
 name: lvl-2 multi-job
 
 on:
-  pull_request:
+  workflow_dispatch:
   
 
 jobs:
