@@ -1,0 +1,20 @@
+name: lvl-2 multi-job
+
+on:
+  push:
+  
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Job-one is reporting"
+
+  job-two:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Job two is reporting"
+
+    
