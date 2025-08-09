@@ -1,0 +1,24 @@
+name: conditionals and matrix builds
+
+on: 
+  push:
+  workflow_dispatch:
+  
+
+jobs:
+  test-matrix:
+    runs-on: ${{ matrix.os}}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [16, 18]
+    
+    steps:
+      - name: "Main branch only"
+        if: github.ref_name == 'main'
+        run: echo "Deploying to production from main branch"
+
+      - name: "Testing only"
+        if: github.ref_name != 'main'
+        run: echo "Running tests only"
