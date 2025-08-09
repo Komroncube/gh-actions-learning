@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sample project for GitHub Actions Lesson 3",
   "scripts": {
-    "build": "mkdir -p dist && echo '<h1>Hello from Lesson 3 Build</h1>' > dist/index.html"
+    "build": "mkdir dist && echo '<h1>Hello from Lesson 3 Build</h1>' > dist/index.html"
   },
   "author": "",
   "license": "MIT",
