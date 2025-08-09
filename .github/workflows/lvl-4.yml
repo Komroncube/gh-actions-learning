@@ -1,0 +1,13 @@
+name: lvl-4 other events
+
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Hello"
+             echo " world"
