@@ -64,7 +64,7 @@ jobs:
     steps:
       - name: Running tests
         run: |
-          echo "Check env after matrix${{ needs.setup.outputs.group-env }}"
+          echo "Check env after matrix ${{ needs.setup.outputs.group-env }}"
 
   check-tests:
     needs: [pre, setup, test]
