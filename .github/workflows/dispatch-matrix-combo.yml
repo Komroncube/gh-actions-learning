@@ -19,7 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       set-env: ${{ steps.set-env.outputs.env }}
+      matrix: ${{ steps.setMatrix.outputs.matrix }}
     steps:
+      - name: Set matrix strategy
+        id: setMatrix
+        run: |
+          echo 'matrix={"env": ["dev", "qa", "prod"]}' >> $GITHUB_OUTPUT
       - name: Set environment variable
         id: set-env
         run: |
@@ -32,15 +37,46 @@ jobs:
           fi
 
           echo $set-env
+  setup:
+    runs-on: ubuntu-latest
+    needs: pre
+    strategy:
+      matrix: ${{ fromJson(needs.pre.outputs.matrix) }}
+    environment: ${{ matrix.env }}
+    outputs:
+      group-env: ${{ steps.get-env.outputs.group-env }}
+    steps:
+      - name: Set up environment
+        id: get-env
+        run: |
+          echo "Setting up environment for ${{ matrix.env }}"
+          echo "group-env=${{ matrix.env }}" >> $GITHUB_OUTPUT
 
   test:
     runs-on: ubuntu-latest
-    needs: pre
-    environment: ${{ needs.pre.outputs.set-env }}
+    needs: setup
+    strategy:
+      matrix: ${{ fromJson(needs.pre.outputs.matrix) }}
+      fail-fast: false
+    environment: ${{ matrix.env }}
     steps:
       - name: Running tests
         run: |
           echo "Running tests in environment: ${{ needs.pre.outputs.set-env }}"
           echo "Job environment: ${{ env }}"
           echo "GitHub environment: $GITHUB_ENV"
+          echo "Check env after matrix${{ needs.setup.outputs.group-env }}"
 
+  check-tests:
+    needs: test
+    runs-on: ubuntu-latest
+    if: always()  # Ensure this job runs regardless of the previous job's success or failure
+    steps:
+      - name: check if tests passed
+        run: |
+          if [[ "${{ needs.test.result }}" == "success" ]]; then
+            echo "Tests passed successfully."
+          else
+            echo "Tests failed. Please check the logs."
+            exit 1
+          fi
