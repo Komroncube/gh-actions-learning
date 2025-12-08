@@ -20,7 +20,7 @@ jobs:
       - name: cache node modules
         uses: actions/cache@v4
         with:
-          path: /.npm
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
             ${{ runner.os }}-node
@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: /dist
+          path: dist

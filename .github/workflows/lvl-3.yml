@@ -15,8 +15,9 @@ jobs:
     needs: job-one
 
     steps:
-      - run: echo "Step-1 is completed",
-             echo "step-2 is running"
+      - run: |
+          echo "step-1 is completed"
+          echo "step-2 is running"
 
   job-three:
     runs-on: ubuntu-latest

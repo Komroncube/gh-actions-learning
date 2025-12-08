@@ -19,15 +19,12 @@ jobs:
         uses: actions/setup-python@v5
         with: 
           python-version: '3.10'
+          cache: 'pip'
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
         
       - name: Run tests with pytest
-        run: |
-          echo "====== Start running tests ======"
-          pytest tests/calculator_tests.py
-          echo "===== Finish running tests ======"
+        run: pytest tests/calculator_tests.py
 
       
