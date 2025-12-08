@@ -23,7 +23,7 @@ jobs:
       - setup
     strategy:
       matrix: ${{ fromJSON(needs.setup.outputs.matrix) }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - id: step1
         name: Pretend we are doing something
